@@ -6,7 +6,7 @@ def main():
 
     precipitations = Weather.new().of(city).getPrecipitations()
 
-    Separator(precipitations).showResult()
+    print(Separator(precipitations))
 
     return precipitations
 
