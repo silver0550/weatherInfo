@@ -16,19 +16,7 @@ class Separator:
 
         precipitations = np.array([{'dt': self._convertUtcToRealTime(i['dt']),'precipitation': i['precipitation']} for i in self.data])
 
-        precipitations = np.array_split(precipitations, self._divisor)
-     
         return precipitations
-
-
-    def showResult(self): #TODO: __str__
-
-        print('A várható csapadék mennyisége a következő órában 1/{} órás felosztásban '.format(self._divisor))
-        
-        for n, i in enumerate(self.get()):
-            print( '{}. negyed'.format( n + 1 ))
-            for j in i:
-                print('{}-kor: {}'.format(j['dt'], j['precipitation']))
 
 
     def _convertUtcToRealTime(self, utc):
@@ -40,9 +28,11 @@ class Separator:
 
     def __str__(self) -> str:
 
+        data = np.array_split(self.get(), self._divisor)
+
         result = 'A várható csapadék mennyisége a következő órában 1/{} órás felosztásban\n'.format(self._divisor)
 
-        for n, i in enumerate(self.get()):
+        for n, i in enumerate(data):
             result += '{}. negyed\n'.format( n + 1 )
             for j in i:
                 result += '\t{}-kor: {}\n'.format(j['dt'], j['precipitation'])
