@@ -21,7 +21,7 @@ class History:
         print('{};{}'.format(city, datetime.now().strftime('%Y.%m.%d %H:%M')), file = self._history)
         self._history.close()
 
-        pd.DataFrame(data).to_csv(self._logFilePath + self._logFileName, sep=self._separate, mode='a',)
+        pd.DataFrame(data,index=[0]).to_csv(self._logFilePath + self._logFileName, sep=self._separate, mode='a')
 
         
 
