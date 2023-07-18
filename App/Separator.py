@@ -31,9 +31,7 @@ class Separator:
 
         separated = np.array_split(list(self.get().items()), 4)
 
-        result = 'A várható csapadék mennyisége a következő órában 1/{} órás felosztásban\n'.format(self._divisor)
-
-        # print(separated)
+        result = 'A várható csapadék mennyisége a következő órában \n'
 
         for n, i in enumerate(separated):
             result += '{}. negyed\n'.format( n + 1 )
