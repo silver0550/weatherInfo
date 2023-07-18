@@ -24,7 +24,11 @@ class Weather():
 
     def _setCoords(self):
         
-        request = requests.get ('http://api.openweathermap.org/data/2.5/weather?q={}&appid={}'.format(self.city, self.key)).json()
+        request = requests.get ('http://api.openweathermap.org/data/2.5/weather?q={}&appid={}'.format(self.city, self.key))
+
+        if request.status_code != 200: raise Exception (request.json()["message"])
+
+        request = request.json()
 
         self.lon = request['coord']['lon']
         self.lat = request['coord']['lat']
@@ -42,7 +46,7 @@ class Weather():
 
         request = requests.get(self.baseUrl.format(self.lat, self.lon, self.key))
 
-        if request.status_code != 200: raise Exception ('Something is wrong with the connection')
+        if request.status_code != 200: raise Exception (request.json()["message"])
 
         return request.json()
     
