@@ -21,6 +21,3 @@ class History:
         
         pd.DataFrame( data, index=[0]).to_csv(self._logFileName, sep=';', mode='a')
 
-        
-if __name__ == "__main__":
-    pass

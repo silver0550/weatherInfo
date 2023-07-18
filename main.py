@@ -20,5 +20,4 @@ def main() -> None:
     print(Separator(precipitations))
     
 
-
 main()
