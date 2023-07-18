@@ -46,8 +46,15 @@ def store(city, data):
     json_file.close()
 
 
-def getFromCache(city) -> None:
-     
+def getFromCache(city):
+
+    with open('App\cache.json' ) as json_file:
+        jsonData = json.load(json_file)
+
+    return jsonData[city]["data"]
+
+def printFromCache(city):
+    
     with open('App\cache.json' ) as json_file:
         jsonData = json.load(json_file)
 
@@ -61,4 +68,4 @@ def getFromCache(city) -> None:
         for j in i:
             result += '\t{} : {}\n'.format(j[0],j[1])
 
-    return result
+    print (result)
